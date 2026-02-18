@@ -30,25 +30,13 @@ return {
     -- Diagnostics UI（inline 虚拟文本 + sign 图标）
     -- ================================
     do
-      -- signcolumn: 把 E/W/H/I 替换成图标
-      local sign_texts = {
-        Error = diag_icons.Error,
-        Warn = diag_icons.Warn,
-        Hint = diag_icons.Hint,
-        Info = diag_icons.Info,
-      }
-      for name, text in pairs(sign_texts) do
-        local sign = "DiagnosticSign" .. name
-        vim.fn.sign_define(sign, { text = text, texthl = sign, numhl = "" })
-      end
-
-      -- inline 诊断提示（LazyVim 风格的 ghost text）
+      local s = vim.diagnostic.severity
+      -- 使用 vim.diagnostic.config 的 signs 配置（替代已弃用的 sign_define）
       vim.diagnostic.config({
         virtual_text = {
           spacing = 2,
           source = "if_many",
           prefix = function(diagnostic)
-            local s = vim.diagnostic.severity
             if diagnostic.severity == s.ERROR then
               return diag_icons.Error
             elseif diagnostic.severity == s.WARN then
@@ -60,7 +48,14 @@ return {
             end
           end,
         },
-        signs = true,
+        signs = {
+          text = {
+            [s.ERROR] = diag_icons.Error,
+            [s.WARN] = diag_icons.Warn,
+            [s.HINT] = diag_icons.Hint,
+            [s.INFO] = diag_icons.Info,
+          },
+        },
         underline = true,
         update_in_insert = false,
         severity_sort = true,
