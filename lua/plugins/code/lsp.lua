@@ -14,9 +14,6 @@ return {
     "neovim/nvim-lspconfig",
     "saghen/blink.cmp",
   },
-  cond = function()
-    return not vim.g.vscode -- 在 VSCode 中禁用此插件（VSCode 已有内置 LSP）
-  end,
 
   opts = {
     ensure_installed = {},

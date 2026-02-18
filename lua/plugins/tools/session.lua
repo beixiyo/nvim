@@ -8,9 +8,6 @@ local icons = require("utils").icons
 return {
   "rmagatti/auto-session",
   lazy = false,
-  cond = function()
-    return not vim.g.vscode -- 在 VSCode 中禁用此插件
-  end,
 
   ---@module "auto-session"
   ---@type AutoSession.Config

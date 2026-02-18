@@ -15,9 +15,6 @@ local icons = require("utils").icons
 
 return {
   "lewis6991/gitsigns.nvim",
-  cond = function()
-    return not vim.g.vscode -- VSCode 中禁用，防止与内置 Git UI 冲突
-  end,
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     signs = {

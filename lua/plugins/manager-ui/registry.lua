@@ -20,18 +20,21 @@ M.optional_plugins = {
   { id = "mini-pairs",     desc = "自动括号/引号配对",            category = "code", import = "plugins.code.mini-pairs" },
   { id = "render-markdown", desc = "Markdown 渲染预览",           category = "code", import = "plugins.code.render-markdown" },
   { id = "treesitter",     desc = "语法高亮与语法树",            category = "code", import = "plugins.code.treesitter" },
+
   -- tools
   { id = "flash",          desc = "快速跳转",                    category = "tools", import = "plugins.tools.flash" },
   { id = "multicursor",    desc = "多光标编辑",                  category = "tools", import = "plugins.tools.multicursor" },
   { id = "session",        desc = "会话保存与恢复",              category = "tools", import = "plugins.tools.session" },
   { id = "which-key",      desc = "快捷键提示",                   category = "tools", import = "plugins.tools.which-key" },
   { id = "yazi",           desc = "文件管理器 Yazi 集成",        category = "tools", import = "plugins.tools.yazi" },
+
   -- ui
   { id = "bufferline",     desc = "标签式 Buffer 栏",            category = "ui", import = "plugins.ui.bufferline" },
   { id = "indent",         desc = "缩进参考线",                  category = "ui", import = "plugins.ui.indent" },
   { id = "lualine",        desc = "状态栏",                      category = "ui", import = "plugins.ui.lualine" },
   { id = "noice",          desc = "通知与命令行 UI",             category = "ui", import = "plugins.ui.noice" },
   { id = "theme",          desc = "主题 (TokyoNight 等)",         category = "ui", import = "plugins.ui.theme" },
+  { id = "snacks",         desc = "核心插件 Snacks",              category = "ui", import = "plugins.snacks" },
 }
 
 --- 按分类分组的显示名
