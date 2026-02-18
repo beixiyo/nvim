@@ -10,6 +10,7 @@
   ],
   "Lua.workspace.library": [
     "/root/.config/nvim/lua",
+    "/root/.local/share/nvim/lazy/Comment.nvim/lua",
     "/root/.local/share/nvim/lazy/auto-session/lua",
     "/root/.local/share/nvim/lazy/blink.cmp/lua",
     "/root/.local/share/nvim/lazy/bufferline.nvim/lua",
@@ -20,6 +21,7 @@
     "/root/.local/share/nvim/lazy/lualine.nvim/lua",
     "/root/.local/share/nvim/lazy/mason-lspconfig.nvim/lua",
     "/root/.local/share/nvim/lazy/mason.nvim/lua",
+    "/root/.local/share/nvim/lazy/mini.comment/lua",
     "/root/.local/share/nvim/lazy/mini.pairs/lua",
     "/root/.local/share/nvim/lazy/multicursor.nvim/lua",
     "/root/.local/share/nvim/lazy/noice.nvim/lua",
@@ -28,10 +30,12 @@
     "/root/.local/share/nvim/lazy/nvim-notify/lua",
     "/root/.local/share/nvim/lazy/nvim-treesitter-context/lua",
     "/root/.local/share/nvim/lazy/nvim-treesitter/lua",
+    "/root/.local/share/nvim/lazy/nvim-ts-context-commentstring/lua",
     "/root/.local/share/nvim/lazy/nvim-web-devicons/lua",
     "/root/.local/share/nvim/lazy/plenary.nvim/lua",
     "/root/.local/share/nvim/lazy/render-markdown.nvim/lua",
     "/root/.local/share/nvim/lazy/snacks.nvim/lua",
+    "/root/.local/share/nvim/lazy/supermaven-nvim/lua",
     "/root/.local/share/nvim/lazy/which-key.nvim/lua",
     "/root/.local/share/nvim/lazy/yazi.nvim/lua"
   ],
@@ -58,7 +62,9 @@
     },
     {
       "module": "tokyonight",
-      "types": [],
+      "types": [
+        "tokyonight.Config"
+      ],
       "file": "ui/theme.lua"
     },
     {

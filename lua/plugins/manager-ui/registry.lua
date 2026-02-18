@@ -16,6 +16,7 @@ M.optional_plugins = {
   -- code
   { id = "gitsigns",       desc = "Git 行内标记与 hunk 操作",     category = "code", import = "plugins.code.gitsigns" },
   { id = "blink",          desc = "补全与 LSP 增强",              category = "code", import = "plugins.code.blink" },
+  { id = "supermaven",     desc = "Supermaven AI 代码补全",       category = "code", import = "plugins.code.supermaven" },
   { id = "lsp",            desc = "LSP 与代码诊断",              category = "code", import = "plugins.code.lsp" },
   { id = "mini-pairs",     desc = "自动括号/引号配对",            category = "code", import = "plugins.code.mini-pairs" },
   { id = "render-markdown", desc = "Markdown 渲染预览",           category = "code", import = "plugins.code.render-markdown" },

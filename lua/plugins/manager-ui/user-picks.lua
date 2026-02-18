@@ -7,6 +7,7 @@
 return {
   ["gitsigns"] = true,
   ["blink"] = true,
+  ["supermaven"] = false,
   ["lsp"] = true,
   ["mini-pairs"] = true,
   ["render-markdown"] = true,
