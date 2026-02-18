@@ -5,7 +5,7 @@
   ],
   "workspace.library": [
     "$VIMRUNTIME",
-    "$XDG_DATA_HOME/nvim/my-nvim/lazy",
+    "$XDG_DATA_HOME/nvim/lazy",
     "${3rd}/luv/library"
   ],
   "Lua.workspace.library": [
