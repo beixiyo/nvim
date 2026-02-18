@@ -1,23 +1,24 @@
 // @ts-nocheck
 /**
- * 扫描 lazy 下所有插件的 lua 目录 + my-nvim/lua 配置路径，更新 .luarc.json 的 Lua.workspace.library；
- * 并扫描 my-nvim/lua/plugins 下所有 ---@module / ---@type，写入 .luarc.json 供参考。
+ * 扫描 lazy 下所有插件的 lua 目录 + lua 配置路径，更新 .luarc.json 的 Lua.workspace.library；
+ * 并扫描 lua/plugins 下所有 ---@module / ---@type，写入 .luarc.json 供参考。
  * 用法（在 .config/nvim 下）:
  *   bun run scripts/update-luarc-library.ts
  * 安装新插件后执行一次即可获得新插件的类型提示
  */
 
 import { readdirSync, readFileSync, writeFileSync, existsSync } from "fs"
+import { homedir } from "os"
 import { join } from "path"
 
-const dataDir = process.env.XDG_DATA_HOME || `${process.env.HOME || "~"}/.local/share`
-const lazyRoot = join(dataDir, "nvim", "my-nvim", "lazy")
+const dataDir = process.env.XDG_DATA_HOME || join(homedir(), ".local", "share")
+const lazyRoot = join(dataDir, "nvim", "lazy")
 
 const scriptDir = import.meta.dir ?? __dirname
 const configRoot = join(scriptDir, "..")
 const luarcPath = join(configRoot, ".luarc.json")
-const pluginsRoot = join(configRoot, "my-nvim", "lua", "plugins")
-const configLuaRoot = join(configRoot, "my-nvim", "lua")
+const pluginsRoot = join(configRoot, "lua", "plugins")
+const configLuaRoot = join(configRoot, "lua")
 
 function collectPluginTypes(): PluginType[] {
   const result: PluginType[] = []
@@ -81,11 +82,11 @@ function updateLuarc(libraryPaths: string[], pluginTypes: PluginType[]) {
 const pluginTypes = collectPluginTypes()
 const paths = collectLibraryPaths()
 if (paths.length === 0) {
-  console.error("No library dirs found (lazy or my-nvim/lua)")
+  console.error("No library dirs found (lazy or lua)")
   process.exit(1)
 }
 
-console.log("Found", pluginTypes.length, "plugin type(s) in my-nvim/lua/plugins")
+console.log("Found", pluginTypes.length, "plugin type(s) in lua/plugins")
 console.log("Found", paths.length, "library path(s) (config lua + lazy plugins)")
 updateLuarc(paths, pluginTypes)
 console.log("Updated", luarcPath)
