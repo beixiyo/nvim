@@ -28,6 +28,66 @@ return {
           truncate = "left",
         },
       },
+      -- 自定义布局预设：用于做「VSCode 风格侧边栏」这种常驻面板
+      layouts = {
+        sidebar = {
+          -- 左侧常驻：仅 input + list，不使用 picker 内置 preview
+          -- 说明：position="left" 会把 picker 做成侧边栏 split，而不是居中弹窗
+          layout = {
+            box = "vertical",
+            position = "left",
+            width = 0.24,
+            min_width = 40,
+            border = true,
+            title = "{title} {live} {flags}",
+            { win = "input", height = 1, border = "bottom" },
+            { win = "list", border = "none" },
+          },
+          hidden = { "preview" },
+        },
+      },
+
+      -- 为特定 source 单独设置：让「引用」像 VSCode 一样左侧常驻
+      sources = {
+        lsp_references = {
+          layout = "sidebar",
+          focus = "list",
+          -- 关键：切到右侧编辑窗口后也不自动关闭
+          auto_close = false,
+          -- 关键：跳转后不关闭 picker，这样可在左侧快速切换不同引用
+          jump = {
+            close = false,
+            -- 这更接近 VSCode：频繁“预览跳转”不污染 jumplist
+            jumplist = false,
+            -- 尽量复用右侧窗口，而不是新开分屏/Tab
+            reuse_win = true,
+          },
+          -- VSCode 风格：左侧上下移动时，右侧自动跟随预览
+          -- 注意：Snacks 内置的 jump 会把焦点切到主窗口，这里跳完再把焦点切回列表，保证连续浏览不被打断。
+          on_change = function(picker, item)
+            if not item then
+              return
+            end
+
+            local ok_actions, actions = pcall(function()
+              return require("snacks.picker.actions")
+            end)
+            if not ok_actions then
+              return
+            end
+
+            local list_win = picker.list and picker.list.win and picker.list.win.win or nil
+            local keep_focus = list_win and vim.api.nvim_win_is_valid(list_win) and vim.api.nvim_get_current_win() == list_win
+
+            -- 触发“跳转”动作（但不会关闭，因为 jump.close=false）
+            actions.jump(picker, nil, { cmd = "edit" })
+
+            if keep_focus and vim.api.nvim_win_is_valid(list_win) then
+              vim.api.nvim_set_current_win(list_win)
+            end
+          end,
+        },
+      },
       layout = {
         config = function(layout)
           local box = layout.layout or {}
