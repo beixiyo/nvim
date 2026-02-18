@@ -9,6 +9,7 @@ return {
   ["blink"] = true,
   ["supermaven"] = false,
   ["lsp"] = true,
+  ["trouble"] = true,
   ["mini-pairs"] = true,
   ["render-markdown"] = true,
   ["treesitter"] = true,

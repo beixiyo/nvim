@@ -75,12 +75,12 @@ return {
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
         -- 跳转相关（g 前缀，属于 "goto" 组）
-        -- 使用 Snacks.picker 提供更好的多结果选择体验
-        map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = icons.jumps .. " " .. "跳转到定义", buffer = event.buf })
-        map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = icons.jumps .. " " .. "跳转到声明", buffer = event.buf })
-        map("n", "gr", function() Snacks.picker.lsp_references() end, { desc = icons.jumps .. " " .. "查找引用", buffer = event.buf, nowait = true })
-        map("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = icons.jumps .. " " .. "跳转到实现", buffer = event.buf })
-        map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = icons.jumps .. " " .. "跳转到类型定义", buffer = event.buf })
+        -- 使用 Trouble 作为主视图（按文件分组 / 树形）
+        map("n", "gd", "<cmd>Trouble lsp_definitions toggle focus=true win.position=left<cr>", { desc = icons.jumps .. " " .. "定义", buffer = event.buf })
+        map("n", "gD", "<cmd>Trouble lsp_declarations toggle focus=true win.position=left<cr>", { desc = icons.jumps .. " " .. "声明", buffer = event.buf })
+        map("n", "gr", "<cmd>Trouble lsp_references toggle focus=true win.position=left<cr>", { desc = icons.jumps .. " " .. "引用（按文件分组）", buffer = event.buf, nowait = true })
+        map("n", "gI", "<cmd>Trouble lsp_implementations toggle focus=true win.position=left<cr>", { desc = icons.jumps .. " " .. "实现", buffer = event.buf })
+        map("n", "gy", "<cmd>Trouble lsp_type_definitions toggle focus=true win.position=left<cr>", { desc = icons.jumps .. " " .. "类型定义", buffer = event.buf })
 
         -- 悬停和签名帮助
         map("n", "K", vim.lsp.buf.hover, { desc = icons.scope .. " " .. "显示悬停信息", buffer = event.buf })
@@ -114,28 +114,17 @@ return {
         -- 当前光标处诊断浮窗
         map("n", "<leader>xd", vim.diagnostic.open_float, { desc = icons.quickfix .. " " .. "显示诊断信息", buffer = event.buf })
 
-        -- Snacks 诊断视图：所有 / 当前缓冲区
-        map("n", "<leader>xx", function() Snacks.picker.diagnostics() end, { desc = icons.quickfix .. " " .. "所有诊断", buffer = event.buf })
-        map("n", "<leader>xX", function() Snacks.picker.diagnostics_buffer() end, { desc = icons.quickfix .. " " .. "当前缓冲区诊断", buffer = event.buf })
+        -- Trouble 诊断 / Quickfix / Loclist / LSP 视图
+        map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true win.position=bottom<cr>", { desc = icons.quickfix .. " " .. "诊断列表（全局）", buffer = event.buf })
+        map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle focus=true filter.buf=0 win.position=bottom<cr>", { desc = icons.quickfix .. " " .. "诊断列表（当前缓冲区）", buffer = event.buf })
+        map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = icons.quickfix .. " " .. "Quickfix 列表", buffer = event.buf })
+        map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = icons.location_list .. " " .. "Location 列表", buffer = event.buf })
 
-        -- Quickfix：把当前所有诊断写入 quickfix，再用 Snacks 方式浏览
-        map("n", "<leader>xq", function()
-          vim.diagnostic.setqflist({ open = false })
-          Snacks.picker.qflist()
-        end, { desc = icons.quickfix .. " " .. "诊断 Quickfix", buffer = event.buf })
-
-        -- Location List：把当前 buffer 诊断写入 loclist，再用 Snacks 方式浏览
-        map("n", "<leader>xl", function()
-          vim.diagnostic.setloclist({ open = false })
-          Snacks.picker.loclist()
-        end, { desc = icons.location_list .. " " .. "诊断 Loclist", buffer = event.buf })
-
-        -- LSP 符号搜索
-        map("n", "<leader>ls", function() Snacks.picker.lsp_symbols() end, { desc = icons.scope .. " " .. "文档符号", buffer = event.buf })
-        map("n", "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = icons.scope .. " " .. "工作区符号", buffer = event.buf })
-        -- LSP 调用关系
-        map("n", "<leader>lci", function() Snacks.picker.lsp_incoming_calls() end, { desc = icons.scope .. " " .. "传入调用", buffer = event.buf })
-        map("n", "<leader>lco", function() Snacks.picker.lsp_outgoing_calls() end, { desc = icons.scope .. " " .. "传出调用", buffer = event.buf })
+        -- LSP 符号 / 调用关系（Trouble 视图）
+        map("n", "<leader>ls", "<cmd>Trouble symbols toggle focus=true win.position=right<cr>", { desc = icons.scope .. " " .. "文档符号", buffer = event.buf })
+        map("n", "<leader>lS", "<cmd>Trouble lsp_document_symbols toggle focus=true win.position=right<cr>", { desc = icons.scope .. " " .. "文档符号原始视图", buffer = event.buf })
+        map("n", "<leader>lci", "<cmd>Trouble lsp_incoming_calls toggle focus=true win.position=right<cr>", { desc = icons.scope .. " " .. "传入调用", buffer = event.buf })
+        map("n", "<leader>lco", "<cmd>Trouble lsp_outgoing_calls toggle focus=true win.position=right<cr>", { desc = icons.scope .. " " .. "传出调用", buffer = event.buf })
       end,
     })
   end,

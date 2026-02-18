@@ -29,6 +29,7 @@ M.optional_plugins = {
   { id = "session",        desc = "会话保存与恢复",              category = "tools", import = "plugins.tools.session" },
   { id = "which-key",      desc = "快捷键提示",                   category = "tools", import = "plugins.tools.which-key" },
   { id = "yazi",           desc = "文件管理器 Yazi 集成",        category = "tools", import = "plugins.tools.yazi" },
+  { id = "trouble",        desc = "LSP/诊断列表（按文件分组）",   category = "tools", import = "plugins.tools.trouble" },
 
   -- ui
   { id = "bufferline",     desc = "标签式 Buffer 栏",            category = "ui", import = "plugins.ui.bufferline" },
