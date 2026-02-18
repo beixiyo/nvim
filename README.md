@@ -13,12 +13,12 @@ sudo apt install -y git fd-find ripgrep
 ```bash
 # Linux
 mkdir -p ~/.config/nvim && \
-git clone --depth=1 --single-branch --no-tags https://github.com/beixiyo/nvim-config.git ~/.config/nvim
+git clone --depth=1 --single-branch --no-tags https://github.com/beixiyo/nvim.git ~/.config/nvim
 ## 可选删除多余文件
 rm -rf ~/.config/nvim/.git
 
 # Window
-git clone --depth=1 --single-branch --no-tags https://github.com/beixiyo/nvim-config.git "$env:LOCALAPPDATA\nvim"
+git clone --depth=1 --single-branch --no-tags https://github.com/beixiyo/nvim.git "$env:LOCALAPPDATA\nvim"
 
 # 启动并自动配置
 nvim
