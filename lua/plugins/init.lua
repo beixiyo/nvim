@@ -20,6 +20,7 @@ end
 if vim.g.vscode then
   return {
     { import = get_plugin_by_id("flash").import },
+    { import = get_plugin_by_id("treesitter").import },
   }
 end
 
