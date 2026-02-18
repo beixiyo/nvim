@@ -28,7 +28,7 @@ return {
           { "<leader>s", group = "search", icon = { icon = icons.grep, color = "cyan" } },
           { "<leader>q", group = "quit/session", icon = { icon = icons.save, color = "azure" } },
           { "<leader>x", group = "diagnostics/quickfix", icon = { icon = icons.diagnostics, color = "orange" } },
-          { "<leader>m", group = "message | markdown", icon = { icon = icons.message, color = "green" } },
+          { "<leader>d", group = "debug", icon = { icon = icons.debug, color = "red" } },
           { "<leader>l", group = "lsp", icon = { icon = icons.scope, color = "cyan" } },
           { "<leader>w", group = "window/layout", icon = { icon = icons.window, color = "purple" } },
 
@@ -43,6 +43,25 @@ return {
     -- 仅展示当前 buffer 的键位（不含全局），便于查看本文件/插件绑定的键
     keys = {
       { "<leader>?", function() require("which-key").show({ global = false }) end, desc = icons.keymaps .. " 当前缓冲区快捷键" },
+      { "<leader>ds", function()
+        local buf = vim.api.nvim_get_current_buf()
+        local row = vim.fn.line('.') - 1
+        local col = vim.fn.col('.') - 1
+        local captures = vim.treesitter.get_captures_at_pos(buf, row, col)
+        if captures and #captures > 0 then
+          local names = vim.tbl_map(function(c) return c.capture end, captures)
+          local ids = vim.tbl_map(function(c) return c.id end, captures)
+          local hl_name = '@' .. names[1]
+          local linked = vim.api.nvim_get_hl(0, { name = hl_name, link = true })
+          local direct = vim.api.nvim_get_hl(0, { name = hl_name, link = false })
+          vim.notify('capture: ' .. names[1] .. '\nhl: ' .. hl_name .. '\nlink: ' .. vim.inspect(linked) .. '\ndirect: ' .. vim.inspect(direct), vim.log.levels.DEBUG)
+        else
+          local syn = vim.fn.synIDtrans(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1))
+          local name = vim.fn.synIDattr(syn, 'name')
+          local hl = vim.api.nvim_get_hl(0, { name = name, link = false, create = false })
+          vim.notify(name .. '\n' .. vim.inspect(hl), vim.log.levels.DEBUG)
+        end
+      end, desc = "当前光标高亮组" },
     },
   },
 }

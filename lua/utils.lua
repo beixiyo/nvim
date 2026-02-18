@@ -36,6 +36,7 @@ M.icons = {
   dap_breakpoint_rejected = { "", "DiagnosticError" },
   dap_log_point = ".>",
   dap_status = "",
+  debug = "",
 
   -- 诊断
   diagnostics_error = "",
