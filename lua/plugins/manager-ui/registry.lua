@@ -37,6 +37,7 @@ M.optional_plugins = {
   { id = "lualine",        desc = "状态栏",                      category = "ui", import = "plugins.ui.lualine" },
   { id = "noice",          desc = "通知与命令行 UI",             category = "ui", import = "plugins.ui.noice" },
   { id = "theme",          desc = "主题 (TokyoNight 等)",         category = "ui", import = "plugins.ui.theme" },
+  { id = "color-picker",   desc = "颜色选择器",                  category = "ui", import = "plugins.ui.color-picker" },
   { id = "snacks",         desc = "核心插件 Snacks",              category = "ui", import = "plugins.snacks" },
 }
 

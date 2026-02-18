@@ -108,24 +108,6 @@ map({ "n", "x" }, "<C-y>", "5<C-y>", { desc = "向上滚动 5 行" })
 -- 注意：有的终端不支持 Ctrl + Alt 系列，可以输入 :echo getcharstr() 后按下快捷键，看是否有捕捉到按键
 map({ "i", "x", "n", "s" }, "<C-A-s>", "<cmd>wa<cr><esc>", { desc = icons.save .. " " .. "保存所有缓冲区" })
 
--- =======================
--- 缓冲区
--- =======================
--- 关闭当前缓冲区
-map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = icons.buffers .. " " .. "关闭当前缓冲区" })
-
--- 关闭左侧所有缓冲区（基于 bufferline 顺序）
-map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<cr>", { desc = icons.buffers .. " " .. "关闭左侧缓冲区" })
-
--- 关闭右侧所有缓冲区（基于 bufferline 顺序）
-map("n", "<leader>bl", "<cmd>BufferLineCloseRight<cr>", { desc = icons.buffers .. " " .. "关闭右侧缓冲区" })
-
--- 关闭除当前以外的所有缓冲区
-map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = icons.buffers .. " " .. "关闭其他缓冲区" })
-
--- 关闭所有缓冲区
-map("n", "<leader>ba", function() Snacks.bufdelete.all() end, { desc = icons.buffers .. " " .. "关闭全部缓冲区" })
-
 
 ------------------------------------------
 

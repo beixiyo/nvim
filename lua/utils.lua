@@ -13,12 +13,15 @@ M.icons = {
   clock = "",
   lsp = "󰘦",
   code = "",
+  fix = "󰁨",
+  rename = "",
 
   -- Dashboard
   find_file = "",
   new_file = "",
   find_text = "",
   recent_files = "",
+  markdown = "",
   config = "",
   session = "",
   lazy = "󰒲",
@@ -56,9 +59,8 @@ M.icons = {
   buffers = "󰈙",
   explorer = "󰉓",
   -- 搜索相关
-  grep = "󰍉",
-  grep_word = "󰦨",
-  scope = "󰨞",
+  vscode = "󰨞",
+  words = "",
   -- 诊断相关
   diagnostics = "",
   -- 编辑/光标相关
@@ -99,12 +101,9 @@ M.icons = {
   keymaps = "󰌌",
   todo_comments = "󰄬",
 
-  -- Quickfix
-  quickfix = "󰈸",
-  location_list = "󰉁",
-  -- 消息
-
+  list = "",
   message = "󰍩",
+  flash = "󰉁",
 
   -- LSP completion kind 图标
   kinds = {

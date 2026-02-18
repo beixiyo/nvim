@@ -11,6 +11,6 @@ return {
   opts = {},
   keys = {
     { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = icons.jumps .. " " .. "Flash 跳转" },
-    { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = icons.scope .. " " .. "Flash Treesitter" },
+    { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = icons.vscode .. " " .. "Flash Treesitter" },
   },
 }

@@ -24,5 +24,6 @@ return {
   ["lualine"] = true,
   ["noice"] = true,
   ["theme"] = true,
+  ["color-picker"] = true,
   ["snacks"] = true,
 }

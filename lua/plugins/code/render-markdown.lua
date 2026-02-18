@@ -33,14 +33,14 @@ return {
         function()
           require("render-markdown").toggle()
         end,
-        desc = icons.todo_comments .. " " .. "Markdown 渲染 开/关",
+        desc = icons.markdown .. " " .. "Markdown 渲染 开/关",
       },
       {
         "<leader>mp",
         function()
           require("render-markdown").preview()
         end,
-        desc = icons.todo_comments .. " " .. "Markdown 预览（侧边）",
+        desc = icons.markdown .. " " .. "Markdown 预览（侧边）",
       },
     },
   },

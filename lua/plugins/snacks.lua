@@ -266,9 +266,9 @@ return {
     -- =======================
     -- 3. 搜索（<leader>s 前缀）
     -- =======================
-    { "<leader>sg", function() Snacks.picker.grep() end, desc = icons.grep .. " " .. "全局搜索" },
-    { "<leader>sw", function() Snacks.picker.grep_word() end, desc = icons.grep_word .. " " .. "搜索单词", mode = { "n", "x" } },
-    { "<leader>sj", function() Snacks.scope.jump() end, desc = icons.scope .. " " .. "跳转到作用域" },
+    { "<leader>sg", function() Snacks.picker.grep() end, desc = icons.find_file .. " " .. "全局搜索" },
+    { "<leader>sw", function() Snacks.picker.grep_word() end, desc = icons.words .. " " .. "搜索单词", mode = { "n", "x" } },
+    { "<leader>sj", function() Snacks.scope.jump() end, desc = icons.vscode .. " " .. "跳转到作用域" },
 
     -- =======================
     -- 4. Git（<leader>g 前缀）

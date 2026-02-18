@@ -42,5 +42,12 @@ return {
     local map = vim.keymap.set
     map("n", "<S-h>", "<Cmd>BufferLineCyclePrev<Cr>", { desc = icons.buffers .. " " .. "上一个 buffer", silent = true })
     map("n", "<S-l>", "<Cmd>BufferLineCycleNext<Cr>", { desc = icons.buffers .. " " .. "下一个 buffer", silent = true })
+
+    -- 键位：缓冲区关闭/管理
+    map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "关闭当前缓冲区", silent = true })
+    map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<cr>", { desc = "关闭左侧缓冲区", silent = true })
+    map("n", "<leader>bl", "<cmd>BufferLineCloseRight<cr>", { desc = "关闭右侧缓冲区", silent = true })
+    map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "关闭其他缓冲区", silent = true })
+    map("n", "<leader>ba", function() Snacks.bufdelete.all() end, { desc = "关闭全部缓冲区", silent = true })
   end,
 }

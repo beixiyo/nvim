@@ -83,48 +83,48 @@ return {
         map("n", "gy", "<cmd>Trouble lsp_type_definitions toggle focus=true win.position=left<cr>", { desc = icons.jumps .. " " .. "类型定义", buffer = event.buf })
 
         -- 悬停和签名帮助
-        map("n", "K", vim.lsp.buf.hover, { desc = icons.scope .. " " .. "显示悬停信息", buffer = event.buf })
-        map("n", "gK", vim.lsp.buf.signature_help, { desc = icons.scope .. " " .. "显示签名帮助", buffer = event.buf })
-        map("i", "<C-k>", vim.lsp.buf.signature_help, { desc = icons.scope .. " " .. "显示签名帮助", buffer = event.buf })
+        map("n", "K", vim.lsp.buf.hover, { desc = icons.vscode .. " " .. "显示悬停信息", buffer = event.buf })
+        map("n", "gK", vim.lsp.buf.signature_help, { desc = icons.vscode .. " " .. "显示签名帮助", buffer = event.buf })
+        map("i", "<C-k>", vim.lsp.buf.signature_help, { desc = icons.vscode .. " " .. "显示签名帮助", buffer = event.buf })
 
         -- Code 组快捷键（<leader>c 前缀，属于 "code" 组）
         if client and client.supports_method("textDocument/codeAction") then
-          map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = icons.commands .. " " .. "自动修复", buffer = event.buf })
+          map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = icons.fix .. " " .. "自动修复", buffer = event.buf })
         end
 
         if client and client.supports_method("textDocument/rename") then
-          map("n", "<leader>cr", vim.lsp.buf.rename, { desc = icons.commands .. " " .. "重命名", buffer = event.buf })
+          map("n", "<leader>cr", vim.lsp.buf.rename, { desc = icons.rename .. " " .. "重命名", buffer = event.buf })
         end
 
         if client and (client.supports_method("textDocument/formatting") or client.supports_method("textDocument/rangeFormatting")) then
           map("n", "<leader>cf", function()
             vim.lsp.buf.format({ async = true })
-          end, { desc = icons.commands .. " " .. "格式化", buffer = event.buf })
+          end, { desc = icons.lsp .. " " .. "格式化", buffer = event.buf })
 
           map("x", "<leader>cf", function()
             vim.lsp.buf.format({ async = true, range = { ["start"] = vim.api.nvim_buf_get_mark(0, "<"), ["end"] = vim.api.nvim_buf_get_mark(0, ">") } })
-          end, { desc = icons.commands .. " " .. "格式化选中区域", buffer = event.buf })
+          end, { desc = icons.lsp .. " " .. "格式化选中区域", buffer = event.buf })
         end
 
         -- 诊断 & Quickfix / Location（<leader>x 前缀，属于 "diagnostics/quickfix" 组）
         -- 跳转上/下一个诊断（保留原始行为）
-        map("n", "[d", vim.diagnostic.goto_prev, { desc = icons.quickfix .. " " .. "上一个诊断", buffer = event.buf })
-        map("n", "]d", vim.diagnostic.goto_next, { desc = icons.quickfix .. " " .. "下一个诊断", buffer = event.buf })
+        map("n", "[d", vim.diagnostic.goto_prev, { desc = icons.tools .. " " .. "上一个诊断", buffer = event.buf })
+        map("n", "]d", vim.diagnostic.goto_next, { desc = icons.tools .. " " .. "下一个诊断", buffer = event.buf })
 
         -- 当前光标处诊断浮窗
-        map("n", "<leader>xd", vim.diagnostic.open_float, { desc = icons.quickfix .. " " .. "显示诊断信息", buffer = event.buf })
+        map("n", "<leader>xd", vim.diagnostic.open_float, { desc = icons.tools .. " " .. "显示诊断信息", buffer = event.buf })
 
         -- Trouble 诊断 / Quickfix / Loclist / LSP 视图
-        map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true win.position=bottom<cr>", { desc = icons.quickfix .. " " .. "诊断列表（全局）", buffer = event.buf })
-        map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle focus=true filter.buf=0 win.position=bottom<cr>", { desc = icons.quickfix .. " " .. "诊断列表（当前缓冲区）", buffer = event.buf })
-        map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = icons.quickfix .. " " .. "Quickfix 列表", buffer = event.buf })
-        map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = icons.location_list .. " " .. "Location 列表", buffer = event.buf })
+        map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true win.position=bottom<cr>", { desc = icons.list .. " " .. "全局诊断列表", buffer = event.buf })
+        map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle focus=true filter.buf=0 win.position=bottom<cr>", { desc = icons.list .. " " .. "当前诊断列表", buffer = event.buf })
+        map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = icons.list .. " " .. "Quickfix 列表", buffer = event.buf })
+        map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = icons.list .. " " .. "Location 列表", buffer = event.buf })
 
         -- LSP 符号 / 调用关系（Trouble 视图）
-        map("n", "<leader>ls", "<cmd>Trouble symbols toggle focus=true win.position=right<cr>", { desc = icons.scope .. " " .. "文档符号", buffer = event.buf })
-        map("n", "<leader>lS", "<cmd>Trouble lsp_document_symbols toggle focus=true win.position=right<cr>", { desc = icons.scope .. " " .. "文档符号原始视图", buffer = event.buf })
-        map("n", "<leader>lci", "<cmd>Trouble lsp_incoming_calls toggle focus=true win.position=right<cr>", { desc = icons.scope .. " " .. "传入调用", buffer = event.buf })
-        map("n", "<leader>lco", "<cmd>Trouble lsp_outgoing_calls toggle focus=true win.position=right<cr>", { desc = icons.scope .. " " .. "传出调用", buffer = event.buf })
+        map("n", "<leader>ls", "<cmd>Trouble symbols toggle focus=true win.position=right<cr>", { desc = icons.vscode .. " " .. "文档符号", buffer = event.buf })
+        map("n", "<leader>lS", "<cmd>Trouble lsp_document_symbols toggle focus=true win.position=right<cr>", { desc = icons.vscode .. " " .. "文档符号原始视图", buffer = event.buf })
+        map("n", "<leader>lci", "<cmd>Trouble lsp_incoming_calls toggle focus=true win.position=right<cr>", { desc = icons.vscode .. " " .. "传入调用", buffer = event.buf })
+        map("n", "<leader>lco", "<cmd>Trouble lsp_outgoing_calls toggle focus=true win.position=right<cr>", { desc = icons.vscode .. " " .. "传出调用", buffer = event.buf })
       end,
     })
   end,
