@@ -20,6 +20,7 @@ M.optional_plugins = {
   { id = "mini-pairs",     desc = "自动括号/引号配对",            category = "code", import = "plugins.code.mini-pairs" },
   { id = "render-markdown", desc = "Markdown 渲染预览",           category = "code", import = "plugins.code.render-markdown" },
   { id = "treesitter",     desc = "语法高亮与语法树",            category = "code", import = "plugins.code.treesitter" },
+  { id = "comment",        desc = "智能行/块注释（含 TSX 支持）", category = "code", import = "plugins.code.comment" },
 
   -- tools
   { id = "flash",          desc = "快速跳转",                    category = "tools", import = "plugins.tools.flash" },
