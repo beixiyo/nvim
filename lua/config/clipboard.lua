@@ -1,5 +1,5 @@
 -- 仅用系统剪贴板（最常用）
--- vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamedplus"
 
 -- 完全不用外部剪贴板（y/p 只影响 Vim 内部）
 -- vim.opt.clipboard = ""
