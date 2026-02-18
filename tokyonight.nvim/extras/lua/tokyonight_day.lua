@@ -108,7 +108,7 @@ local highlights = {
     fg = "#8c6c3e"
   },
   ["@constant"] = "Constant",
-  ["@constant.builtin"] = "Special",
+  ["@constant.builtin"] = { fg = "#9966cc", italic = true },
   ["@constant.macro"] = "Define",
   ["@constructor"] = {
     fg = "#9854f1"

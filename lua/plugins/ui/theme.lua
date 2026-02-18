@@ -10,8 +10,17 @@ return {
     cond = function()
       return not vim.g.vscode -- 在 VSCode 中禁用此插件
     end,
+
     config = function()
-      require("tokyonight").load({ style = "night" })
+      ---@type tokyonight.Config
+      local config = {
+        style = "night",
+        on_highlights = function(hl, c)
+          hl.DiagnosticUnnecessary = { fg = c.dark5 }
+        end,
+      }
+
+      require("tokyonight").load(config)
     end,
   },
 }

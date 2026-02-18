@@ -3,11 +3,12 @@ local Util = require("tokyonight.util")
 local M = {}
 
 ---@type tokyonight.HighlightsFn
-function M.get(c)
+function M.get(c, opts)
   -- stylua: ignore
   return {
     ["@lsp.type.boolean"]                      = "@boolean",
-    ["@lsp.type.builtinType"]                  = "@type.builtin",
+    ["@lsp.type.constant"]                      = "@constant.builtin",
+    ["@lsp.type.builtinType"]                  = { fg = c.magenta, style = opts.styles.keywords },
     ["@lsp.type.comment"]                      = "@comment",
     ["@lsp.type.decorator"]                    = "@attribute",
     ["@lsp.type.deriveHelper"]                 = "@attribute",
@@ -45,7 +46,7 @@ function M.get(c)
     ["@lsp.typemod.type.defaultLibrary"]       = { fg = Util.blend_bg(c.blue1, 0.8) },
     ["@lsp.typemod.typeAlias.defaultLibrary"]  = { fg = Util.blend_bg(c.blue1, 0.8) },
     ["@lsp.typemod.variable.callable"]         = "@function",
-    ["@lsp.typemod.variable.defaultLibrary"]   = "@variable.builtin",
+    ["@lsp.typemod.variable.defaultLibrary"]   = { fg = c.magenta, style = opts.styles.keywords },
     ["@lsp.typemod.variable.injected"]         = "@variable",
     ["@lsp.typemod.variable.static"]           = "@constant",
 

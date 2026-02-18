@@ -2,6 +2,30 @@
 
 本项目已根据 pretty_dark 颜色方案进行了自定义修改，以提供更好的性能和视觉体验
 
+## 文件作用
+
+| 文件夹/文件 | 作用 |
+| --- | --- |
+| `lua/tokyonight/colors/` | 颜色调色板定义（magenta、blue 等颜色值） |
+| `lua/tokyonight/groups/` | 核心：高亮组定义 |
+| `lua/tokyonight/groups/treesitter.lua` | treesitter 语法高亮（@keyword、@constant.builtin） |
+| `lua/tokyonight/groups/semantic_tokens.lua` | LSP semantic tokens 高亮 |
+| `lua/tokyonight/groups/base.lua` | vim 基础高亮组（Keyword、Constant） |
+| `lua/tokyonight/groups/kinds.lua` | LSP 符号类型（补全菜单中的图标映射） |
+| `extras/lua/*.lua` | 预生成文件：主题导出（night、moon 等），优先级最高 |
+| `extras/` | 其他终端/工具的主题导出（vim、helix、lazygit 等） |
+
+## 需要修改的核心文件
+
+| 文件 | 作用 |
+|------|------|
+| `lua/tokyonight/colors/storm.lua` | 基础调色板（所有颜色的默认值） |
+| `lua/tokyonight/colors/moon.lua` | moon 风格颜色覆盖 |
+| `lua/tokyonight/colors/night.lua` | night 风格颜色覆盖 |
+| `lua/tokyonight/groups/treesitter.lua` | treesitter 语法高亮 |
+| `lua/tokyonight/groups/semantic_tokens.lua` | LSP semantic tokens |
+| `lua/tokyonight/groups/base.lua` | vim 基础高亮组 |
+
 ## 颜色方案概述
 
 当前配置基于 pretty_dark 颜色方案，主要颜色包括：
@@ -99,14 +123,11 @@
 
 ## 重启应用
 
-修改源码后，需要重启 Neovim 才能看到效果。修改配置文件后，可以使用 `:colorscheme tokyonight` 命令重新加载主题
+修改源码后，需要清除缓存（`rm -rf ~/.cache/nvim/tokyonight*`）并重启 Neovim 才能看到效果。修改配置文件后，可以使用 `:colorscheme tokyonight` 命令重新加载主题
 
-## 备份原配置
-
-在进行重大修改前，建议备份原始文件：
-
-```bash
-cp lua/tokyonight/colors/storm.lua lua/tokyonight/colors/storm.lua.backup
-cp lua/tokyonight/groups/treesitter.lua lua/tokyonight/groups/treesitter.lua.backup
-cp lua/tokyonight/groups/base.lua lua/tokyonight/groups/base.lua.backup
+缓存路径定义在 `lua/tokyonight/util.lua:143`
+```lua
+function M.cache.file(key)
+  return vim.fn.stdpath("cache") .. "/tokyonight-" .. key .. ".json"
+end
 ```
