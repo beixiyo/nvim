@@ -25,6 +25,7 @@ M.optional_plugins = {
 
   -- tools
   { id = "flash",          desc = "快速跳转",                    category = "tools", import = "plugins.tools.flash" },
+  { id = "hover",          desc = "鼠标悬停自动 Hover（LSP/自定义内容）", category = "tools", import = "plugins.tools.hover" },
   { id = "multicursor",    desc = "多光标编辑",                  category = "tools", import = "plugins.tools.multicursor" },
   { id = "session",        desc = "会话保存与恢复",              category = "tools", import = "plugins.tools.session" },
   { id = "which-key",      desc = "快捷键提示",                   category = "tools", import = "plugins.tools.which-key" },
