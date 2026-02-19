@@ -4,6 +4,7 @@
 
 local M = {}
 
+---@type HoverConfig|nil
 local config = nil
 
 ---创建 LSP provider
@@ -20,6 +21,10 @@ end
 ---@return boolean 是否成功发起请求
 function M._get_hover_content(ctx, callback)
   if not ctx or not ctx.bufnr or not ctx.winid then
+    return false
+  end
+
+  if not config then
     return false
   end
 

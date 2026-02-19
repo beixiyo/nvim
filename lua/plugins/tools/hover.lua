@@ -1,6 +1,7 @@
 -- Hover：鼠标悬停自动显示 LSP Hover（支持自定义 provider）
 -- 本插件实现位于本仓库的 lua/plugins/hover/（作为本地插件 dir 引入）
 
+---@type LazySpec[]
 return {
   {
     name = "hover.nvim",
@@ -9,6 +10,7 @@ return {
     cond = function()
       return not vim.g.vscode
     end,
+    ---@type HoverConfig
     opts = {
       enabled = true,
       timing = {
@@ -23,6 +25,7 @@ return {
         max_width = 80,
         max_height = 20,
         focusable = false,
+        zindex = 150,
         relative = "mouse",
       },
       behavior = {

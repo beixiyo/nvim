@@ -10,10 +10,10 @@
   ],
   "Lua.workspace.library": [
     "/root/.config/nvim/lua",
-    "/root/.local/share/nvim/lazy/Comment.nvim/lua",
     "/root/.local/share/nvim/lazy/auto-session/lua",
     "/root/.local/share/nvim/lazy/blink.cmp/lua",
     "/root/.local/share/nvim/lazy/bufferline.nvim/lua",
+    "/root/.local/share/nvim/lazy/ccc.nvim/lua",
     "/root/.local/share/nvim/lazy/flash.nvim/lua",
     "/root/.local/share/nvim/lazy/gitsigns.nvim/lua",
     "/root/.local/share/nvim/lazy/indent-blankline.nvim/lua",
@@ -21,7 +21,6 @@
     "/root/.local/share/nvim/lazy/lualine.nvim/lua",
     "/root/.local/share/nvim/lazy/mason-lspconfig.nvim/lua",
     "/root/.local/share/nvim/lazy/mason.nvim/lua",
-    "/root/.local/share/nvim/lazy/mini.comment/lua",
     "/root/.local/share/nvim/lazy/mini.pairs/lua",
     "/root/.local/share/nvim/lazy/multicursor.nvim/lua",
     "/root/.local/share/nvim/lazy/noice.nvim/lua",
@@ -30,12 +29,11 @@
     "/root/.local/share/nvim/lazy/nvim-notify/lua",
     "/root/.local/share/nvim/lazy/nvim-treesitter-context/lua",
     "/root/.local/share/nvim/lazy/nvim-treesitter/lua",
-    "/root/.local/share/nvim/lazy/nvim-ts-context-commentstring/lua",
     "/root/.local/share/nvim/lazy/nvim-web-devicons/lua",
     "/root/.local/share/nvim/lazy/plenary.nvim/lua",
     "/root/.local/share/nvim/lazy/render-markdown.nvim/lua",
     "/root/.local/share/nvim/lazy/snacks.nvim/lua",
-    "/root/.local/share/nvim/lazy/supermaven-nvim/lua",
+    "/root/.local/share/nvim/lazy/trouble.nvim/lua",
     "/root/.local/share/nvim/lazy/which-key.nvim/lua",
     "/root/.local/share/nvim/lazy/yazi.nvim/lua"
   ],
@@ -115,6 +113,44 @@
         "AutoSession.Config"
       ],
       "file": "tools/session.lua"
+    },
+    {
+      "types": [
+        "LazySpec[]",
+        "HoverConfig"
+      ],
+      "file": "tools/hover.lua"
+    },
+    {
+      "types": [
+        "trouble.Config"
+      ],
+      "file": "tools/trouble.lua"
+    },
+    {
+      "types": [
+        "HoverConfig|nil"
+      ],
+      "file": "hover/providers/lsp.lua"
+    },
+    {
+      "types": [
+        "HoverConfig|{}",
+        "HoverView|nil",
+        "HoverProvider|nil"
+      ],
+      "file": "hover/controller.lua"
+    },
+    {
+      "types": [
+        "HoverModule",
+        "HoverConfig",
+        "HoverConfig",
+        "HoverController|nil",
+        "HoverView|nil",
+        "HoverProvider|nil"
+      ],
+      "file": "hover/init.lua"
     }
   ]
 }

@@ -2,17 +2,88 @@
 -- hover.nvim - 自动 Hover 插件
 -- ================================
 -- 基于鼠标位置的自动 LSP Hover 显示
--- 兼容 LazyVim，可发布到 GitHub
 --
 -- 特性：
 -- - 鼠标悬停自动显示 LSP 文档
 -- - 可自定义内容提供者（支持非 LSP 内容）
 -- - 完整的时序配置（延迟、防抖、节流等）
 -- - 单一职责的模块化架构
+---@class HoverTimingConfig
+---@field hover_delay integer   鼠标停留触发延迟（ms）
+---@field debounce_ms integer   鼠标移动防抖时间（ms）
+---@field throttle_ms integer   鼠标移动节流时间（ms）
+---@field close_delay integer   鼠标移开后延迟关闭时间（ms）
+---@field min_show_time integer 最小显示时长（ms）
 
+---@class HoverUIConfig
+---@field border string
+---@field max_width integer
+---@field max_height integer
+---@field focusable boolean
+---@field zindex integer
+---@field relative '"mouse"'|'"cursor"'|'"editor"'
+
+---@class HoverBehaviorConfig
+---@field close_on_move boolean
+---@field close_on_insert boolean
+---@field only_normal_buf boolean
+
+---@class HoverProviderResult
+---@field lines string[]
+---@field filetype string
+
+---@class HoverMousePos
+---@field winid integer
+---@field line integer
+---@field column integer
+
+---@class HoverProviderCtx
+---@field bufnr integer
+---@field winid integer
+---@field row integer
+---@field col integer
+---@field line_text string
+---@field mouse_pos HoverMousePos
+---@field lsp_clients vim.lsp.Client[]
+
+---@alias HoverProvider fun(ctx: HoverProviderCtx, callback?:fun(result: HoverProviderResult|nil)): any
+
+---@class HoverView
+---@field setup fun(cfg: HoverConfig)
+---@field open fun(lines: string[], filetype: string): (integer|nil, integer|nil)
+---@field close fun()
+---@field is_open fun(): boolean
+---@field is_mouse_inside fun(pos: HoverMousePos|nil): boolean
+---@field scroll fun(direction: '"up"'|'"down"')
+
+---@class HoverController
+---@field setup fun(cfg: HoverConfig, view: HoverView, provider: HoverProvider)
+---@field enable fun()
+---@field disable fun()
+---@field set_provider fun(fn: HoverProvider)
+---@field show fun()
+
+---@class HoverConfig
+---@field enabled boolean
+---@field timing HoverTimingConfig
+---@field ui HoverUIConfig
+---@field behavior HoverBehaviorConfig
+---@field provider HoverProvider|nil
+
+---@class HoverModule
+---@field setup fun(opts?: HoverConfig)
+---@field enable fun()
+---@field disable fun()
+---@field set_provider fun(fn: HoverProvider)
+---@field show fun()
+---@field hide fun()
+---@field get_config fun(): HoverConfig
+
+---@type HoverModule
 local M = {}
 
--- 默认配置
+--- 默认配置
+---@type HoverConfig
 local default_config = {
   -- 基础开关
   enabled = true,
@@ -50,13 +121,17 @@ local default_config = {
 }
 
 -- 内部状态
-local config = {}
+---@type HoverConfig
+local config = default_config
+---@type HoverController|nil
 local controller = nil
+---@type HoverView|nil
 local view = nil
+---@type HoverProvider|nil
 local provider = nil
 
 ---设置插件配置
----@param opts table|nil 配置选项
+---@param opts HoverConfig|nil 配置选项
 function M.setup(opts)
   opts = opts or {}
 

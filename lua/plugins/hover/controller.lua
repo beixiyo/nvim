@@ -6,8 +6,11 @@
 
 local M = {}
 
+---@type HoverConfig|{}
 local config = {}
+---@type HoverView|nil
 local view = nil
+---@type HoverProvider|nil
 local provider = nil
 
 -- 内部状态
@@ -60,7 +63,9 @@ function M.enable()
     vim.api.nvim_create_autocmd("InsertEnter", {
       callback = function()
         M._cleanup_timers()
-        view.close()
+        if view then
+          view.close()
+        end
       end,
     })
   end
@@ -78,7 +83,9 @@ function M.disable()
   M._cleanup_timers()
   
   -- 关闭浮窗
-  view.close()
+  if view then
+    view.close()
+  end
   
   -- 移除鼠标移动事件映射
   pcall(vim.keymap.del, "n", MOUSE_MOVE_KEY)
@@ -139,7 +146,9 @@ function M._on_mouse_move()
     -- 鼠标离开窗口：清理定时器并关闭 hover
     M._cleanup_timers()
     last_mouse_key = nil
-    view.close()
+    if view then
+      view.close()
+    end
     return
   end
   
@@ -276,6 +285,10 @@ function M._trigger_hover(key)
   request_token = request_token + 1
   local current_token = request_token
   
+  if not provider then
+    return
+  end
+  
   -- 调用 provider 获取内容
   -- provider 可能是：
   -- 1. 自定义函数：function(ctx) -> result | nil（同步）
@@ -332,9 +345,14 @@ function M._show_hover_result(result, key, token)
   end
   
   -- 关闭旧浮窗
-  view.close()
+  if view then
+    view.close()
+  end
   
   -- 打开新浮窗
+  if not view then
+    return
+  end
   local bufnr_f, winid_f = view.open(result.lines, result.filetype)
   if bufnr_f and winid_f then
     active_hover_key = key
@@ -352,7 +370,9 @@ function M._schedule_close()
   
   -- 如果延迟时间为 0，立即关闭
   if config.timing.close_delay == 0 then
-    view.close()
+    if view then
+      view.close()
+    end
     active_hover_key = nil
     return
   end
@@ -374,7 +394,9 @@ function M._schedule_close()
       end
     end
     
-    view.close()
+    if view then
+      view.close()
+    end
     active_hover_key = nil
     
     if close_timer then
