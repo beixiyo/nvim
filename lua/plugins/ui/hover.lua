@@ -6,10 +6,7 @@ return {
   {
     name = "hover.nvim",
     dir = vim.fn.stdpath("config") .. "/lua/plugins/hover",
-    lazy = false,
-    cond = function()
-      return not vim.g.vscode
-    end,
+    event = "LspAttach",
     ---@type HoverConfig
     opts = {
       enabled = true,

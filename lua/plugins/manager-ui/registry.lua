@@ -25,7 +25,6 @@ M.optional_plugins = {
 
   -- tools
   { id = "flash",          desc = "快速跳转",                    category = "tools", import = "plugins.tools.flash" },
-  { id = "hover",          desc = "鼠标悬停自动 Hover（LSP/自定义内容）", category = "tools", import = "plugins.tools.hover" },
   { id = "multicursor",    desc = "多光标编辑",                  category = "tools", import = "plugins.tools.multicursor" },
   { id = "session",        desc = "会话保存与恢复",              category = "tools", import = "plugins.tools.session" },
   { id = "which-key",      desc = "快捷键提示",                   category = "tools", import = "plugins.tools.which-key" },
@@ -33,6 +32,7 @@ M.optional_plugins = {
   { id = "trouble",        desc = "LSP/诊断列表（按文件分组）",   category = "tools", import = "plugins.tools.trouble" },
 
   -- ui
+  { id = "hover",          desc = "鼠标悬停自动 Hover（LSP/自定义内容）", category = "ui", import = "plugins.ui.hover" },
   { id = "bufferline",     desc = "标签式 Buffer 栏",            category = "ui", import = "plugins.ui.bufferline" },
   { id = "indent",         desc = "缩进参考线",                  category = "ui", import = "plugins.ui.indent" },
   { id = "lualine",        desc = "状态栏",                      category = "ui", import = "plugins.ui.lualine" },
