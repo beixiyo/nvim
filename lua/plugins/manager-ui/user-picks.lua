@@ -12,6 +12,8 @@ return {
   ["trouble"] = true,
   ["mini-pairs"] = true,
   ["render-markdown"] = true,
+  ["codediff"] = true,
+  ["diffview"] = false,
   ["treesitter"] = true,
   ["comment"] = false,
   ["flash"] = true,

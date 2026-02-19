@@ -32,6 +32,8 @@ M.optional_plugins = {
   { id = "trouble",        desc = "LSP/诊断列表（按文件分组）",   category = "tools", import = "plugins.tools.trouble" },
 
   -- ui
+  { id = "codediff",       desc = "VSCode 风格双栏 Diff",        category = "ui", import = "plugins.ui.codediff" },
+  { id = "diffview",       desc = "Git 双栏 Diff 视图",          category = "ui", import = "plugins.ui.diffview" },
   { id = "hover",          desc = "鼠标悬停自动 Hover（LSP/自定义内容）", category = "ui", import = "plugins.ui.hover" },
   { id = "bufferline",     desc = "标签式 Buffer 栏",            category = "ui", import = "plugins.ui.bufferline" },
   { id = "smear-cursor",   desc = "光标追尾",                    category = "ui", import = "plugins.ui.smear-cursor" },
