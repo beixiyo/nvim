@@ -32,6 +32,7 @@
     "/root/.local/share/nvim/lazy/nvim-web-devicons/lua",
     "/root/.local/share/nvim/lazy/plenary.nvim/lua",
     "/root/.local/share/nvim/lazy/render-markdown.nvim/lua",
+    "/root/.local/share/nvim/lazy/smear-cursor.nvim/lua",
     "/root/.local/share/nvim/lazy/snacks.nvim/lua",
     "/root/.local/share/nvim/lazy/trouble.nvim/lua",
     "/root/.local/share/nvim/lazy/which-key.nvim/lua",
@@ -88,6 +89,13 @@
     },
     {
       "types": [
+        "LazySpec[]",
+        "HoverConfig"
+      ],
+      "file": "ui/hover.lua"
+    },
+    {
+      "types": [
         "snacks.Config",
         "snacks.dashboard.Item[]"
       ],
@@ -113,13 +121,6 @@
         "AutoSession.Config"
       ],
       "file": "tools/session.lua"
-    },
-    {
-      "types": [
-        "LazySpec[]",
-        "HoverConfig"
-      ],
-      "file": "tools/hover.lua"
     },
     {
       "types": [

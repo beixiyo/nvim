@@ -181,6 +181,12 @@ return {
     -- 让 Snacks 的路径颜色更亮一些
     vim.api.nvim_create_autocmd("VimEnter", {
       callback = function()
+        -- Snacks.explorer / 目录颜色
+        vim.api.nvim_set_hl(0, "Directory", { fg = "#82a9fe" })
+        vim.api.nvim_set_hl(0, "SnacksExplorerDir", { fg = "#82a9fe" })
+        vim.api.nvim_set_hl(0, "SnacksExplorerGitDir", { fg = "#82a9fe" })
+
+        -- Snacks.picker 路径颜色
         vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#787878" })
         vim.api.nvim_set_hl(0, "SnacksPickerPathHidden", { fg = "#565f89" })
         vim.api.nvim_set_hl(0, "SnacksPickerPathIgnored", { fg = "#565f89" })

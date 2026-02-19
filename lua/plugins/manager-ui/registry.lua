@@ -34,6 +34,7 @@ M.optional_plugins = {
   -- ui
   { id = "hover",          desc = "鼠标悬停自动 Hover（LSP/自定义内容）", category = "ui", import = "plugins.ui.hover" },
   { id = "bufferline",     desc = "标签式 Buffer 栏",            category = "ui", import = "plugins.ui.bufferline" },
+  { id = "smear-cursor",   desc = "光标追尾",                    category = "ui", import = "plugins.ui.smear-cursor" },
   { id = "indent",         desc = "缩进参考线",                  category = "ui", import = "plugins.ui.indent" },
   { id = "lualine",        desc = "状态栏",                      category = "ui", import = "plugins.ui.lualine" },
   { id = "noice",          desc = "通知与命令行 UI",             category = "ui", import = "plugins.ui.noice" },

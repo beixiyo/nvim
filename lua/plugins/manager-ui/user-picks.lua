@@ -15,6 +15,7 @@ return {
   ["treesitter"] = true,
   ["comment"] = false,
   ["flash"] = true,
+  ["smear-cursor"] = true,
   ["hover"] = true,
   ["multicursor"] = true,
   ["session"] = true,
