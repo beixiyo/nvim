@@ -299,6 +299,7 @@ return {
     -- =======================
     -- 6. 终端
     -- =======================
-    { "<C-\\>", function() Snacks.terminal() end, desc = icons.terminal .. " " .. "切换终端", mode = { "n", "t" } },
+    -- WezTerm 配置 C-` 映射成 `F13`，实现特殊快捷键绑定
+    { "<F13>", function() Snacks.terminal() end, desc = icons.terminal .. " " .. "切换终端", mode = { "n", "t" } },
   },
 }

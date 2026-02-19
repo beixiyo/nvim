@@ -218,3 +218,13 @@ vim.api.nvim_create_autocmd("FileType", {
 ```
 - 通过 `buffer = event.buf` 让快捷键只在该 buffer 生效  
 - 适用于插件窗口或临时 buffer
+
+---
+
+## 6. 快捷键调试（查看按键与来源）
+
+- **看“当前输入的按键序列”**：`:set showcmd`（或 `:showcmd`）
+- **查某个按键最终执行什么、由谁定义**：`:verbose nmap <lhs>`（按需替换 `nmap/imap/vmap/tmap`）
+- **查某个前缀下有哪些映射**：`:nmap <leader>` 或 `:nmap <leader>f`
+- **确认终端实际发来的键码**：`:echo getcharstr()`（执行后按一次要排查的键）
+- **需要时看最近回显/报错**：`:messages`
