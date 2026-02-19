@@ -40,7 +40,7 @@ function M.get(c, opts)
     ["@keyword.directive"]            = "PreProc",
     ["@keyword.directive.define"]     = "Define",
     ["@keyword.exception"]            = "@keyword",
-    ["@keyword.function"]             = { fg = c.magenta, style = opts.styles.functions }, -- For keywords used to define a function.
+    ["@keyword.function"]             = { fg = c.magenta, style = { italic = true } }, -- For keywords used to define a function.
     ["@keyword.import"]               = "@keyword",
     ["@keyword.operator"]             = "@keyword",
     ["@keyword.repeat"]               = "@keyword",
