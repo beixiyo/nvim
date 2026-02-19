@@ -158,7 +158,7 @@ return {
           { icon = icons.session,      key = "s", desc = "恢复会话",         action = ":AutoSession search" },
           { icon = icons.lazy,         key = "l", desc = "Lazy 管理插件",    action = ":Lazy" },
           { icon = icons.tools,        key = "p", desc = "可选插件",         action = ":PluginManager" },
-          { icon = icons.quit,         key = "q", desc = "退出 Neovim",      action = ":qa" },
+          { icon = icons.quit,         key = "q", desc = "退出",            action = ":qa" },
         },
       },
 
