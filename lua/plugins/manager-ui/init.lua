@@ -10,7 +10,7 @@ local CONFIG = {
   separator_len = 60,
   category_order = { "code", "tools", "ui" },
   width_ratio = 0.7,
-  height_ratio = 0.7,
+  height_ratio = 0.9,
 }
 
 local ns = vim.api.nvim_create_namespace("plugin_manager")
@@ -152,7 +152,7 @@ local function setup_keymaps(buf, win, picks, id_to_entry, toggle_callback)
   local opts = { noremap = true, silent = true, buffer = buf }
   vim.keymap.set("n", "<CR>", toggle_callback, opts)
   vim.keymap.set("n", "x", toggle_callback, opts)
-  
+
   local function close_and_ensure_dashboard()
     vim.api.nvim_win_close(win, true)
     -- 关闭后检查是否还有 dashboard 窗口，如果没有就打开 dashboard
@@ -174,7 +174,7 @@ local function setup_keymaps(buf, win, picks, id_to_entry, toggle_callback)
       end
     end)
   end
-  
+
   vim.keymap.set("n", "q", close_and_ensure_dashboard, opts)
   vim.keymap.set("n", "<Esc>", close_and_ensure_dashboard, opts)
 end

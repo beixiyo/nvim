@@ -28,6 +28,7 @@ return {
   ["lualine"] = true,
   ["noice"] = true,
   ["theme"] = true,
+  ["scrollbar"] = true,
   ["color-picker"] = true,
   ["snacks"] = true,
 }

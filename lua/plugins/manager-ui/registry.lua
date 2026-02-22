@@ -43,6 +43,7 @@ M.optional_plugins = {
   { id = "theme",          desc = "主题 (TokyoNight 等)",         category = "ui", import = "plugins.ui.theme" },
   { id = "color-picker",   desc = "颜色选择器",                  category = "ui", import = "plugins.ui.color-picker" },
   { id = "snacks",         desc = "核心插件 Snacks",              category = "ui", import = "plugins.snacks" },
+  { id = "scrollbar",      desc = "滚动条",                      category = "ui", import = "plugins.ui.scrollbar" },
 }
 
 --- 按分类分组的显示名

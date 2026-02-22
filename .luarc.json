@@ -28,6 +28,7 @@
     "/root/.local/share/nvim/lazy/nui.nvim/lua",
     "/root/.local/share/nvim/lazy/nvim-lspconfig/lua",
     "/root/.local/share/nvim/lazy/nvim-notify/lua",
+    "/root/.local/share/nvim/lazy/nvim-scrollview/lua",
     "/root/.local/share/nvim/lazy/nvim-treesitter-context/lua",
     "/root/.local/share/nvim/lazy/nvim-treesitter/lua",
     "/root/.local/share/nvim/lazy/nvim-web-devicons/lua",
