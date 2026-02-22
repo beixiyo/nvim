@@ -77,7 +77,9 @@ function M.get(c, opts)
 
     Bold                        = { bold = true, fg = c.fg }, -- (preferred) any bold text
     Character                   = { fg = c.green }, --  a character constant: 'c', '\n'
-    Constant                    = { fg = c.constant }, -- (preferred) any constant
+    Boolean                     = { fg = c.orange },   -- true, false
+    Constant                    = { fg = c.constant }, -- (preferred) any constant (const 声明)
+    Number                      = { fg = c.orange },  -- 数字字面量（比 const 更深的橙）
     Debug                       = { fg = c.constant }, --    debugging statements
     Delimiter                   =  { fg = c.punctuation }, --  character that needs attention
     Error                       = { fg = c.error }, -- (preferred) any erroneous construct

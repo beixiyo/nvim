@@ -71,8 +71,8 @@ function M.get(c, opts)
     ["@module.builtin"]               = { fg = c.variable }, -- Variable names that are defined by the languages, like `this` or `self`.
     ["@namespace.builtin"]            = "@variable.builtin",
     ["@none"]                         = {},
-    ["@number"]                       = "Constant",
-    ["@number.float"]                 = "Constant",
+    ["@number"]                       = "Number",
+    ["@number.float"]                 = "Number",
     ["@operator"]                     = { fg = c.operator },  -- For any operator: `+`, but also `->` and `*` in C.
     ["@property"]                     = { fg = c.property },
     ["@punctuation.bracket"]          = { fg = c.punctuation }, -- For brackets and parens.

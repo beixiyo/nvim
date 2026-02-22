@@ -45,6 +45,7 @@ return {
     },
 
     fuzzy = { implementation = "prefer_rust_with_warning" },
+
     -- 命令行补全：: 与 / ? 自动弹出列表
     cmdline = {
       enabled = true,

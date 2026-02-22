@@ -48,6 +48,7 @@ function M.get(c, opts)
     ["@lsp.typemod.variable.callable"]         = "@function",
     ["@lsp.typemod.variable.defaultLibrary"]   = { fg = c.magenta, style = opts.styles.keywords },
     ["@lsp.typemod.variable.injected"]         = "@variable",
+    ["@lsp.typemod.variable.readonly"]         = "@constant", -- const 声明的变量
     ["@lsp.typemod.variable.static"]           = "@constant",
 
   }
