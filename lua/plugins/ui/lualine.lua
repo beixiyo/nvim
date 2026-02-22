@@ -230,7 +230,7 @@ return {
           -- 进度 + 光标位置（点击行列号复制 相对路径:行号）
           { "progress", separator = " ", padding = { left = 1, right = 0 } },
           {
-            "location",
+            utils.lualine.location(),
             padding = { left = 0, right = 1 },
             on_click = function(_, button)
               if button == "l" then

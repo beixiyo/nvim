@@ -337,14 +337,38 @@ function M.lualine.pretty_path(opts)
   end
 end
 
+--- 获取当前选区范围（用于 lualine）
+local function get_visual_range()
+  local mode = vim.fn.mode()
+  if mode:match("v") or mode:match("V") or mode == "\22" then
+    local start = vim.fn.line("v")
+    local end_line = vim.fn.line(".")
+    if start > end_line then
+      start, end_line = end_line, start
+    end
+    return string.format("%d-%d", start, end_line)
+  end
+  return nil
+end
+
+--- 选中区域时显示「起始行-结束行」，否则 fallback 到行号
+function M.lualine.location()
+  return function()
+    return get_visual_range() or "%l"
+  end
+end
+
 --- 复制「相对路径:行号」到系统剪贴板（供 lualine 文件名/行列号点击使用）
+--- 选中区域时复制「相对路径:起始行-结束行」，否则复制「相对路径:当前行」
 function M.lualine.copy_path_line()
   local rel = vim.fn.expand("%:.")
   if rel == "" then
     return
   end
-  local row = vim.api.nvim_win_get_cursor(0)[1]
-  local text = rel .. ":" .. row
+
+  local range = get_visual_range()
+  local text = rel .. ":" .. (range or vim.api.nvim_win_get_cursor(0)[1])
+
   vim.fn.setreg("+", text)
   vim.notify("已复制: " .. text, vim.log.levels.INFO, { title = "Lualine" })
 end
