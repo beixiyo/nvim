@@ -20,6 +20,8 @@ opt.softtabstop = 2 -- 编辑时按 <Tab>/<BS> 视为多少空格
 
 -- 鼠标、确认、编码
 opt.mouse = "a" -- 启用鼠标（普通/插入/可视等模式）
+-- Shift+左键 扩展选区（需终端把 Shift+点击 发给 Neovim）。WezTerm 默认用 Shift 绕过鼠标上报，需改 bypass 修饰键
+opt.mousemodel = "extend"
 opt.confirm = true -- 未保存缓冲区退出/切换时弹出确认
 opt.encoding = "utf-8" -- Neovim 内部使用的编码
 opt.fileencoding = "utf-8" -- 写入文件时使用的编码

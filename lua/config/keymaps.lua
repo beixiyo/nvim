@@ -27,6 +27,36 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- =======================
+-- 鼠标：Shift+左键 扩展选区（覆盖 mousemodel=extend 下默认的 * 行为）
+-- =======================
+-- 官方 extend 模式下 <S-LeftMouse> 默认是执行 *（高亮所有相同词），这里改为从当前光标扩展到点击位置
+local function extend_selection_to_mouse()
+  local pos = vim.fn.getmousepos()
+  if not pos or not pos.winid or pos.winid == 0 then
+    return
+  end
+  if vim.api.nvim_get_current_win() ~= pos.winid then
+    vim.api.nvim_set_current_win(pos.winid)
+  end
+  local line = pos.line
+  local col = math.max(0, (pos.column or 1) - 1)
+  local mode = vim.fn.mode(true):sub(1, 1)
+  if mode == "n" then
+    vim.cmd("normal! v")
+    vim.api.nvim_win_set_cursor(pos.winid, { line, col })
+  elseif mode == "v" or mode == "V" or mode == "\22" then
+    vim.api.nvim_win_set_cursor(pos.winid, { line, col })
+  end
+end
+
+map({ "n", "x" }, "<S-LeftMouse>", extend_selection_to_mouse, { desc = "扩展选区到点击位置" })
+-- 插入模式下先 Ctrl-O 进入 normal 再扩展选区（schedule 确保在 feedkeys 之后执行）
+map("i", "<S-LeftMouse>", function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-o>", true, false, true), "n", false)
+  vim.schedule(extend_selection_to_mouse)
+end, { desc = "扩展选区到点击位置" })
+
+-- =======================
 -- 模式切换
 -- =======================
 -- jk 退出到普通模式（替代 Esc）
