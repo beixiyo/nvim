@@ -106,7 +106,8 @@ map({ "n", "x" }, "<C-y>", "5<C-y>", { desc = "向上滚动 5 行" })
 -- =======================
 -- Ctrl+Alt+S 保存所有缓冲区
 -- 注意：有的终端不支持 Ctrl + Alt 系列，可以输入 :echo getcharstr() 后按下快捷键，看是否有捕捉到按键
-map({ "i", "x", "n", "s" }, "<C-A-s>", "<cmd>wa<cr><esc>", { desc = icons.save .. " " .. "保存所有缓冲区" })
+map({ "i", "x", "n", "s" }, "<C-A-s>", "<cmd>wa<cr><esc>", { desc = icons.save .. " " .. "保存所有文件" })
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = icons.save .. " " .. "保存当前文件" })
 
 
 ------------------------------------------
