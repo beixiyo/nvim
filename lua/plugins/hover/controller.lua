@@ -197,24 +197,12 @@ function M._on_scroll(direction)
     vim.schedule(function()
       view.scroll(direction)
     end)
+    return
   end
-  -- 如果鼠标不在浮窗内，不处理，让 Neovim 默认行为生效
-  -- 但由于我们设置了 mapping，默认行为被阻止了
-  -- 所以我们需要手动执行滚动
-  if not view or not view.is_open() or not view.is_mouse_inside(pos) then
-    vim.schedule(function()
-      local winid = pos and pos.winid or 0
-      if winid ~= 0 and vim.api.nvim_win_is_valid(winid) then
-        vim.api.nvim_win_call(winid, function()
-          local topline = vim.fn.line("w0")
-          local delta = direction == "up" and -3 or 3
-          local buf_lines = vim.api.nvim_buf_line_count(0)
-          local new_topline = math.max(1, math.min(buf_lines - vim.fn.winheight(0) + 1, topline + delta))
-          vim.fn.winrestview({ topline = new_topline })
-        end)
-      end
-    end)
-  end
+
+  local key = direction == "up" and "3<C-Y>" or "3<C-E>"
+  local esc_key = vim.api.nvim_replace_termcodes(key, true, false, true)
+  vim.api.nvim_feedkeys(esc_key, "n", false)
 end
 
 ---启动 hover 定时器
