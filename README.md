@@ -42,6 +42,45 @@ nvim
 
 ---
 
+## 常见错误排查
+
+### `module 'lazy' not found` / `E5113 ... require("lazy")`
+
+**现象**：首次启动 nvim 报错类似：
+
+- `E5113: ... module 'lazy' not found`
+
+**原因**：`lazy.nvim` 需要被克隆到 Neovim 的数据目录（`stdpath("data")/lazy/lazy.nvim`）。新机器上常见情况是：
+
+- `git clone` 中断或网络问题，留下了**不完整/空目录**，导致后续误以为已安装但实际缺文件
+- 未安装 `git`
+- 数据目录权限异常
+
+**排查与修复**：
+
+1. 确认 `git` 已安装（Debian/Ubuntu）：
+
+```bash
+sudo apt install -y git
+```
+
+2. 打印你的 Neovim 数据目录（不同机器可能被 `XDG_DATA_HOME` / `NVIM_APPNAME` 影响）：
+
+```bash
+nvim --headless +'lua print(vim.fn.stdpath("data"))' +q
+```
+
+3. 删除可能残留的 `lazy.nvim` 半成品目录，然后重新启动 nvim 触发自动安装：
+
+```bash
+rm -rf ~/.local/share/nvim/lazy/lazy.nvim
+nvim
+```
+
+如果第 2 步输出的 data 目录不是 `~/.local/share/nvim`，请把上面的路径替换为：
+
+- `<你的data目录>/lazy/lazy.nvim`
+
 ## 文档
 
 更多说明见仓库内 `docs/` 目录：
