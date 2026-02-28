@@ -26,4 +26,28 @@ if vim.fn.has('wsl') == 1 then
     },
     cache_enabled = 0,
   }
+-- SSH 场景：使用 Neovim 0.10+ 内置 OSC52，通过终端（如 wezterm）把远端复制同步到本机剪贴板
+elseif vim.env.SSH_TTY and vim.fn.has("nvim-0.10") == 1 then
+  local ok, osc52 = pcall(require, "vim.ui.clipboard.osc52")
+  if ok then
+    local function osc52_paste()
+      return {
+        vim.fn.split(vim.fn.getreg(""), "\n"),
+        vim.fn.getregtype(""),
+      }
+    end
+
+    vim.g.clipboard = {
+      name = "OSC 52",
+      copy = {
+        ["+"] = osc52.copy("+"),
+        ["*"] = osc52.copy("*"),
+      },
+      -- wezterm 目前不支持通过 OSC52 读取剪贴板，这里用内部寄存器做粘贴，避免 10s 卡顿
+      paste = {
+        ["+"] = osc52_paste,
+        ["*"] = osc52_paste,
+      },
+    }
+  end
 end
