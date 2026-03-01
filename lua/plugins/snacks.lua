@@ -88,8 +88,9 @@ return {
           end,
         },
 
-        -- explorer 使用 sidebar 布局，但去掉外围高亮边框
+        -- explorer 使用 sidebar 布局，但去掉外围高亮边框；默认展示被 git 忽略的文件
         explorer = {
+          ignored = true,
           layout = {
             -- 仍然使用内置 sidebar 预设
             preset = "sidebar",
